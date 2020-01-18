@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	<constant name="struts.configuration.xml.reload" value="true"/> 
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.locale" value="zh_CN"/>
+	
+    <!--配置Convention 插件自动重加载映射 -->
+    <constant name="struts.convention.classes.reload" value="true"/>
+    
+    <package name="PostUser" namespace="/user" extends="struts-default">
+    	<!--列出post-->
+    	<action name="list" class="cslg.cn.controller.PostAction" method="list">
+    		<result name="list">/WEB-INF/view/post/list.jsp</result>
+    		<result name="error" type="">/WEB-INF/view/post/list.jsp</result>
+    	</action>
+    	<action name="add" class="cslg.cn.controller.PostAction" method="add">
+    		<result name="success">/WEB-INF/view/public/success.jsp</result>
+    		<result name="error">/WEB-INF/view/public/error.jsp</result>
+    	</action>
+    	<action name="show" class="cslg.cn.controller.PostAction" method="show">
+    		<result name="show">/WEB-INF/view/post/show.jsp</result>
+    		<result name="error">/WEB-INF/view/public/error.jsp</result>
+    	</action>
+    	<action name="review" class="cslg.cn.controller.PostAction" method="review">
+    		<result name="success">/WEB-INF/view/public/success.jsp</result>
+    		<result name="error">/WEB-INF/view/public/error.jsp</result>
+    	</action>
+    	<action name="response" class="cslg.cn.controller.AjaxAction" method="response">
+    		<result name="success">/WEB-INF/view/public/success.jsp</result>
+    		<result name="error">/WEB-INF/view/public/error.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="Admin" namespace="/admin" extends="struts-default">
+   		<!--管理员登陆界面-->
+        <action name="login" class="cslg.cn.controller.AdminAction" method="login">
+    		<result name="login">/WEB-INF/view/admin/login.jsp</result>
+    		<result name="post">/WEB-INF/view/public/success.jsp</result>
+    	</action>
+    	<!--管理员确认登陆-->
+    	<action name="dologin" class="cslg.cn.controller.AdminAction" method="dologin">
+    		<result name="success">/WEB-INF/view/public/success.jsp</result>
+    		<!--错误后返回登录界面-->
+    		<result name="error">/WEB-INF/view/admin/login.jsp</result>
+    	</action>
+    	<!--管理员注销-->
+    	<action name="logout" class="cslg.cn.controller.AdminAction" method="logout">
+    		<result name="success">/WEB-INF/view/public/success.jsp</result>
+    	</action>
+    	<!--管理贴子主页-->
+    	 <action name="post" class="cslg.cn.controller.AdminAction" method="post">
+    		<result name="post">/WEB-INF/view/admin/post.jsp</result>
+    		<result name="noadmin">/WEB-INF/view/admin/login.jsp</result>
+    	</action>
+    	<!--快速删除恢复功能-->
+    	 <action name="delete" class="cslg.cn.controller.AdminAction" method="delete">
+    		<result name="success">/WEB-INF/view/public/success.jsp</result>
+    		<result name="error">/WEB-INF/view/public/error.jsp</result>
+    		<result name="noadmin">/WEB-INF/view/admin/login.jsp</result>
+    	</action>
+    	<!--批量删除-->
+    	 <action name="delforever" class="cslg.cn.controller.AdminAction" method="delforever">
+    		<result name="success">/WEB-INF/view/public/success.jsp</result>
+    		<result name="error">/WEB-INF/view/public/error.jsp</result>
+    		<result name="noadmin">/WEB-INF/view/admin/login.jsp</result>
+    	</action>
+    	<!--置顶功能-->
+    	<action name="top" class="cslg.cn.controller.AdminAction" method="top">
+    		<result name="success">/WEB-INF/view/public/success.jsp</result>
+    		<result name="error">/WEB-INF/view/public/error.jsp</result>
+    		<result name="noadmin">/WEB-INF/view/admin/login.jsp</result>
+    	</action>
+    </package>
+    
+</struts>
